@@ -63,7 +63,7 @@ Just validate your cluster accesing the spark UI on each worker & master URL.
 
 http://localhost:9090/
 
-![alt text](docs/spark-master.png "Spark master UI")
+![alt text](docs/master.png "Spark master UI")
 
 **For workers post always check** `docker ps`
 
@@ -71,19 +71,19 @@ http://localhost:9090/
 
 http://0.0.0.0:32768
 
-![alt text](docs/spark-worker-1.png "Spark worker 1 UI")
+![alt text](docs/worker-1.png "Spark worker 1 UI")
 
 ### Spark Worker 2
 
 http://0.0.0.0:32770
 
-![alt text](docs/spark-worker-2.png "Spark worker 2 UI")
+![alt text](docs/worker-2.png "Spark worker 2 UI")
 
 ### Spark Worker 3
 
-http://0.0.0.0:3276۹
+http://0.0.0.0:3276
 
-![alt text](docs/spark-worker-3.png "Spark worker 3 UI")
+![alt text](docs/worker-3.png "Spark worker 3 UI")
 
 # Resource Allocation 
 
