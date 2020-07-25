@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   spark-master:
-    image: spydernaz/spark-master:latest
+    image: spark-master:latest
     ports:
       - "9090:8080"
       - "7077:7077"
@@ -11,9 +11,11 @@ services:
     environment:
       - "SPARK_LOCAL_IP=spark-master"
   spark-worker:
-    image: spydernaz/spark-worker:latest
+    image: spark-master:latest
     depends_on:
       - spark-master
+    ports:
+      - "8081" # we generate a unique port of each worker.
     environment:
       - SPARK_MASTER=spark://spark-master:7077
       - SPARK_WORKER_CORES=1
