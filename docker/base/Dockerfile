@@ -11,6 +11,7 @@ ENV SPARK_HOME=/spark
 
 
 
+
 RUN apt-get update && apt-get install -y curl vim wget software-properties-common ssh net-tools ca-certificates jq
 
 #     apt update && apt -y upgrade \
