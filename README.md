@@ -6,8 +6,6 @@ A simple spark standalone cluster for your testing environment purposses. A *doc
 
 This supports Spark 3.0.0 and Hadoop 3.2
 
-The Docker compose will create the following containers:
-
 
 
 # Installation
