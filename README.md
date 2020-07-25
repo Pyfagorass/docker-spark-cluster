@@ -4,14 +4,11 @@
 
 A simple spark standalone cluster for your testing environment purposses. A *docker-compose up* away from you solution for your spark development environment.
 
+This supports Spark 3.0.0 and Hadoop 3.2
+
 The Docker compose will create the following containers:
 
-container|Ip address
----|---
-spark-master|10.5.0.2
-spark-worker-1|10.5.0.3
-spark-worker-2|10.5.0.4
-spark-worker-3|10.5.0.5
+
 
 # Installation
 
@@ -38,13 +35,13 @@ chmod +x build-images.sh
 
 This will create the following docker images:
 
-* spark-base:2.3.1: A base image based on java:alpine-jdk-8 wich ships scala, python3 and spark 2.3.1
+* spark-base:: A base image based on java:alpine-jdk-8 wich ships scala, python3 and spark 
 
-* spark-master:2.3.1: A image based on the previously created spark image, used to create a spark master containers.
+* spark-master:: A image based on the previously created spark image, used to create a spark master containers.
 
-* spark-worker:2.3.1: A image based on the previously created spark image, used to create spark worker containers.
+* spark-worker:: A image based on the previously created spark image, used to create spark worker containers.
 
-* spark-submit:2.3.1: A image based on the previously created spark image, used to create spark submit containers(run, deliver driver and die gracefully).
+* spark-submit:: A image based on the previously created spark image, used to create spark submit containers(run, deliver driver and die gracefully).
 
 ## Run the docker-compose
 
@@ -56,29 +53,35 @@ docker-compose up --scale spark-worker=3
 
 ## Validate your cluster
 
+Check what IP:ports have been assigned by running `docker ps`
+
+![alt text](docs/dockerps.png "Check Spark Workers Port")
+
 Just validate your cluster accesing the spark UI on each worker & master URL.
 
 ### Spark Master
 
-http://10.5.0.2:8080/
+http://localhost:9090/
 
 ![alt text](docs/spark-master.png "Spark master UI")
 
+**For workers post always check** `docker ps`
+
 ### Spark Worker 1
 
-http://10.5.0.3:8081/
+http://0.0.0.0:32768
 
 ![alt text](docs/spark-worker-1.png "Spark worker 1 UI")
 
 ### Spark Worker 2
 
-http://10.5.0.4:8081/
+http://0.0.0.0:32770
 
 ![alt text](docs/spark-worker-2.png "Spark worker 2 UI")
 
 ### Spark Worker 3
 
-http://10.5.0.5:8081/
+http://0.0.0.0:3276۹
 
 ![alt text](docs/spark-worker-3.png "Spark worker 3 UI")
 
@@ -174,7 +177,7 @@ docker run --network docker-spark-cluster_spark-network \
 -v /mnt/spark-apps:/opt/spark-apps \
 --env SPARK_APPLICATION_JAR_LOCATION=$SPARK_APPLICATION_JAR_LOCATION \
 --env SPARK_APPLICATION_MAIN_CLASS=$SPARK_APPLICATION_MAIN_CLASS \
-spark-submit:2.3.1
+spark-submit:
 
 ```
 
@@ -191,7 +194,7 @@ Running Spark using the REST application submission protocol.
 {
   "action" : "CreateSubmissionResponse",
   "message" : "Driver successfully submitted as driver-20180923151753-0000",
-  "serverSparkVersion" : "2.3.1",
+  "serverSparkVersion" : "",
   "submissionId" : "driver-20180923151753-0000",
   "success" : true
 }
